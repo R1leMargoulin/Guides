@@ -146,13 +146,11 @@ docker save NEW_IMG_NAME > PATH_WHERE_YOU_WANNA_SAVE
 ```
 (you can have the container name or id with the **docker ps** command and the image name/id with the **docker images** command.
 
+You are now ready to work with any ROS distribution you want on your machine. No more quadra-boot!
 
 # Outro
 Thanks for your reading, I hope this guide will be useful :)
 
-I'm sure it is not perfect, So please contact me if you see any point of improvement for this Guide!
+I'm sure it is not perfect, so please contact me if you see any point of improvement for this Guide!
 Linkedin: https://fr.linkedin.com/in/erwan-martin-76b931199
-mail: erwan.martin666@gmail.com
-
-
-
+mail: erwan.martin666@gmail.com/emartin@cesi.fr
