@@ -64,8 +64,11 @@ Then, you need to give a name to your image, I'll call it **"ros2-humble-img"**
 Open a terminal and type the following command. (Don't forget to change the name of the image you created (**ros2-humble-img** for me here) and the name of the container you want (**ros2-humble** for me).  
 
 ```Bash
-docker run --name ros2-humble -it -v "C:\\:/mnt/c" --network hostros2-humble-img bash
+docker run --name ros2-humble --user=user --env=DISPLAY=host.docker.internal:0 --volume="C:\\:/mnt/c" --restart=no --runtime=runc --network=host -t -d ros2-humble-img
 ```
+
+- (here, we add a DISPLAY environment variable, it will serve for GUI applications, we'll see how to setup that in the next part).
+- (the volume parameter is used to make a shared directory between your host machine and your container. Here our root of our C disk (C\\) is located in the /mnt/c directory in our container. Feel free to change the volume location as you wish!)
 
 ![docker_desktop_ros](https://github.com/R1leMargoulin/Guides/assets/73824807/cdf9e2d2-364e-43ca-bb70-857d79d2f383)
 
@@ -75,21 +78,16 @@ Install Xming : [Xming X Server for Windows](https://sourceforge.net/projects/xm
 
 then launch X-launch.
 
-then go in the Docker Terminal, run this command:
-```bash
-export DISPLAY=host.docker.internal:0
-```
-I advise to put this command into the ~/.bashrc file in order to have it by default (and avoid retyping it every time).
 
-Then launch terminator with the command:
+Now, run your container and launch terminator with the command:
 ```bash
 terminator -u&
 ```
-
+You now have your best friend in order to work :)
 You are now ready to go, let's install ROS2!
 
 # ROS2 install
-Use this as a .sh file in order to automatically install ROS2 humble, if you are using an other version, refer to the ros documentaion in order to install it (https://docs.ros.org).
+Use this as a bash file in order to automatically install ROS2 humble, if you are using an other version, refer to the ros documentaion in order to install it (https://docs.ros.org).
 ```bash
 #!/bin/bash
 
@@ -131,7 +129,7 @@ Don't forget to source your ROS
 source /opt/ros/humble/setup.bash
 ```
 
-you can also add this one to your .bashrc :)
+you can add this one to your .bashrc file :)
 
 
 # Exporting your Image
